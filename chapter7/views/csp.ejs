@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CSP 확인 페이지</title>
+  </head>
+  <body>
+    <script nonce="<%= nonce %>">
+      if (window.trustedTypes && trustedTypes.createPolicy) {
+        // policy 함수 정의
+        const policy = trustedTypes.createPolicy("script-url", {
+          // <script> 요소의 src에 설정하는 URL 체크
+          createScriptURL: (str) => {
+            // str의 URL 문자열에서 Origin을 가져오기 위해 URL 객체를 사용
+            const url = new URL(str, location.origin);
+            if (url.origin !== location.origin) {
+              // 교차 출처는 에러 발생
+              throw new Error("교차 출처는 허가되지 않습니다.");
+            }
+            // 동일 출처만 URL 반환
+            return url;
+          },
+        });
+
+        const script = document.createElement("script");
+        // 작성한 policy 함수로 검사
+        // TrustedScriptURL로 변환된 값은 대입이 가능
+        script.src = policy.createScriptURL("./csp-test.js");
+        document.body.appendChild(script);
+      }
+    </script>
+  </body>
+</html>

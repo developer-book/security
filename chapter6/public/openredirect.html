@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>오픈 리다이렉트 확인 페이지</title>
+  </head>
+  <body>
+    <h1>오픈 리다이렉트 확인 페이지</h1>
+    <script>
+      const url = new URL(location.href);
+      const redirectUrl = url.searchParams.get("url");
+      if (redirectUrl) {
+        // 쿼리스트링 url의 출처를 가져오기 위해 URL 객체 생성
+        const redirectUrlObj = new URL(redirectUrl);
+        if (
+          redirectUrlObj.origin === location.origin ||
+          confirm(`${redirectUrl}로 이동하시겠습니까?`)
+        ) {
+          location.href = redirectUrl;
+        }
+      }
+    </script>
+  </body>
+</html>

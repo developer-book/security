@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>XSS 검사 페이지</title>
+    <script src="./purify.js"></script>
+  </head>
+  <body>
+    <h1>XSS 검사용 페이지</h1>
+    <div id="result"></div>
+    <a id="link" href="#">링크 클릭</a>
+
+    <script>
+      const url = new URL(location.href);
+      const message = url.searchParams.get("message");
+      if (message !== null) {
+        // 5.3.1 적절한 DOM을 사용
+        document.querySelector("#result").textContent = message;
+
+        // 5.3.3 DOMPurify 사용
+        const sanitizedMessage = DOMPurify.sanitize(message);
+        document.querySelector("#result").innerHTML = sanitizedMessage;
+      }
+
+      const urlStr = url.searchParams.get("url");
+      if (urlStr !== null) {
+        const linkUrl = new URL(urlStr, url.origin);
+        if (
+          linkUrl.protocol.startsWith("http") ||
+          linkUrl.protocol.startsWith("https")
+        ) {
+          document.querySelector("#link").href = linkUrl;
+        } else {
+          console.warn("http 또는 https가 아닌 URL입니다.");
+        }
+      }
+    </script>
+  </body>
+</html>

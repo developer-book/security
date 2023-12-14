@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CSRF 확인 페이지</title>
+  </head>
+  <body>
+    <form id="remit" action="/csrf/remit" method="post">
+      <div>
+        <label for="to">수신인</label>
+        <input type="text" name="to" id="to" required />
+      </div>
+      <div>
+        <label for="amount">금액</label>
+        <input type="text" name="amount" id="amount" required />
+      </div>
+      <div>
+        <button type="submit">송금</button>
+      </div>
+    </form>
+    <script>
+      // 쿠키에서 토큰 가져오기
+      const token = document.cookie
+        .split("; ")
+        .find((row) => row.startsWith("csrf_token="))
+        .split("=")[1];
+
+      // 폼에 토큰을 갖는 <input> 요소를 hidden 상태로 추가
+      const el = document.createElement("input");
+      el.type = "hidden";
+      el.name = "csrf_token";
+      el.value = token;
+      document.getElementById("remit").appendChild(el);
+    </script>
+  </body>
+</html>

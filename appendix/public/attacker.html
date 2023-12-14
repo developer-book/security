@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>attacker.example</title>
+    <script>
+      function load() {
+        // 사용자 정보 가져오기
+        const userInfo = frm.document.querySelector("#user_info");
+        // 사용자 정보 문자열을 로그로 출력
+        console.log(userInfo.textContent);
+      }
+    </script>
+  </head>
+  <body>
+    <div>
+      <!-- 사용자를 유인하기 위한 피싱 페이지 콘텐츠 -->
+    </div>
+
+    <!-- 사용자 정보를 iframe으로 삽입 -->
+    <iframe
+      name="frm"
+      onload="load()"
+      src="http://site.example:3000/user.html"
+      width="80%"
+    />
+  </body>
+</html>

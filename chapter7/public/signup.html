@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>계정 생성</title>
+    <link rel="stylesheet" href="./signup.css" />
+  </head>
+  <body>
+    <form id="signup" action="/signup" method="POST">
+      <fieldset>
+        <legend class="form-caption">계정 생성</legend>
+        <div>
+          <label for="username">메일 주소</label>
+          <input
+            id="username"
+            type="email"
+            name="username"
+            class="signup-input"
+            required
+            autocomplete="email"
+          />
+        </div>
+        <div>
+          <label for="password">비밀번호</label>
+          <input
+            id="password"
+            type="password"
+            name="password"
+            class="signup-input"
+            required
+            pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+            title="비밀번호는 8자 이상의 알파벳과 숫자의 조합을 사용해 주세요."
+            autocomplete="new-password"
+          />
+        </div>
+        <div class="signup-item">
+          <input type="checkbox" id="display-password" />
+          <label for="display-password">비밀번호 표시</label>
+        </div>
+        <p>
+          <small
+            >비밀번호는 8자 이상의 알파벳과 숫자의 조합을 사용해 주세요.</small
+          >
+        </p>
+        <button id="submit" type="submit">계정 생성</button>
+      </fieldset>
+    </form>
+
+    <script>
+      const btn = document.querySelector("#submit");
+      const password = document.querySelector("#password");
+      btn.addEventListener("click", () => {
+        if (!/^[A-Za-z\d]{8,}$/.test(password.value)) {
+          password.setCustomValidity(
+            "8자리 이상으로 알파벳과 숫자를 조합해 주세요."
+          );
+        } else if (!/(?=.*[A-Za-z])(?=.*\d)/.test(password.value)) {
+          password.setCustomValidity("알파벳을 하나 이상 사용해 주세요.");
+        } else {
+          password.setCustomValidity("");
+        }
+      });
+
+      const checkbox = document.querySelector("#display-password");
+      checkbox.addEventListener("change", () => {
+        if (checkbox.checked === true) {
+          // 체크박스가 ON일 때 type을 text로 변경
+          password.type = "text";
+        } else {
+          // 체크박스가 OFF일 때 type을 password로 변경
+          password.type = "password";
+        }
+      });
+    </script>
+  </body>
+</html>

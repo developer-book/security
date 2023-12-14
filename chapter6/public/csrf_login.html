@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CSRF 확인 페이지</title>
+  </head>
+  <body>
+    <form action="/csrf/login" method="POST">
+      <div>
+        <label for="username">Username:</label>
+        <input type="text" name="username" id="username" />
+      </div>
+      <div>
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password" />
+      </div>
+      <div>
+        <button type="submit">로그인</button>
+      </div>
+    </form>
+  </body>
+</html>

@@ -2,7 +2,7 @@
 
 [프런트엔드 개발을 위한 보안 입문] 실습을 위한 샘플 코드
 
-<img src="https://github.com/jpubcode/frontend_security/assets/147061870/9fc4b3fc-b5e3-491f-9b99-3448dc066c3c" height="400" />
+<img src="https://github.com/developer-book/security/assets/147061870/2a893ec3-4c30-4ba7-a4d0-c2e7b4a316ce" height="400" />
 
 ## 차례
 ### Chapter1 웹 보안의 개요

@@ -45,6 +45,9 @@
 ### Appendix A
 ### Appendix B
 
+## 다운로드
+- <a href="https://github.com/svelte-book/sample-app/files/13684988/default.pdf">체크리스트</a>
+
 ## 동작 환경
 
 - Windows 10,11 / macOS 10,11,12,13,14
